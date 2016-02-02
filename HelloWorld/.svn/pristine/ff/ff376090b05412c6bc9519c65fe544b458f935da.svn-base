@@ -1,0 +1,190 @@
+package onlyblue21.Controller;
+
+import java.text.DateFormat;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
+
+import javax.annotation.Resource;
+
+import onlyblue21.service.TestService;
+import onlyblue21.vo.UserVo;
+import onlyblue21.vo.User_Board;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+@Controller
+@SessionAttributes("command")
+public class TestController {
+	
+//	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+	
+	@Resource(name="TestService")
+	private TestService testservice;
+	
+	@RequestMapping(value = "/onlyblue21/login", method = RequestMethod.GET)
+	public String home(Model model){
+		System.out.println("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
+		return "/onlyblue21/Login";
+	}
+
+	
+	@RequestMapping(value = "/onlyblue21/List" , method=RequestMethod.POST)
+	public String login2(Model model,UserVo uservo,User_Board user_board) throws Exception{
+			
+			boolean Login = false;
+			Login = testservice.Login(uservo);
+			List<User_Board> User_List = null;
+		if(Login){
+			User_List = testservice.UserBoard(user_board);
+			System.out.println("Listvalue:@@@@@@@@@@@%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"+User_List);
+			
+			model.addAttribute("List",User_List);
+			model.addAttribute("count",User_List.size());
+//			System.out.println("@@@@@@@@@@@@@@@@@@@List��"+User_List);
+			return "/onlyblue21/List";
+		}
+		else{
+			model.addAttribute("Login","ID�� PW�� Ȯ���Ͽ� �ּ���.");
+			
+			return "/onlyblue21/Login";
+		}
+	}
+	@RequestMapping(value = "/onlyblue21/List_n" , method=RequestMethod.GET)
+	public String List_n(Model model,UserVo uservo,User_Board user_board,
+							final RedirectAttributes redirectAttributes) throws Exception{
+			
+			List<User_Board> User_List = null;
+			User_List = testservice.UserBoard(user_board);
+			model.addAttribute("List",User_List);
+			model.addAttribute("count",User_List.size());
+
+			return "/onlyblue21/List";
+	}
+	@RequestMapping(value="/onlyblue21/addContent")
+	public String addContent(Locale locale, Model model, UserVo uservo,User_Board user_board, 
+								final RedirectAttributes redirectAttributes) throws Exception{
+		
+		String process = null;
+		process = user_board.getProcess();
+		
+		if(user_board.getProcess().equals("add")){
+			return "/onlyblue21/AddContent";
+		}
+
+		if(user_board.getProcess().equals("sqladd")){
+			String Mresult=null;
+			Date date = new Date();
+			String ServerTime = null;
+			int text=0;
+			
+			DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+			
+			ServerTime = dateFormat.format(date);
+//			System.out.println("����ǰ� �ִ°�"+ServerTime);
+			model.addAttribute("serverTime", ServerTime );
+			
+//			System.out.println("@@@@@if�� ź��");
+			text = testservice.maxseq(user_board);
+			System.out.println("@@@@@@@@@@@@@@@maxseq"+text);
+			int result = testservice.AddContent(user_board);
+			
+			
+//			System.out.println("@@@@List ź��");
+//			System.out.println("result��:::@@@@"+result);
+			Mresult = result > 0? "�۾��� ���� �Ͽ����ϴ�." : "�۽��� ���� �Ͽ����ϴ�.";
+//			System.out.println("Mresult@##################" + Mresult);
+			redirectAttributes.addFlashAttribute("Mresult", Mresult);
+			
+			return "redirect:/onlyblue21/List_n";
+		}
+		
+		return "/onlyblue21/List";
+	}
+	
+	@RequestMapping(value="/onlyblue21/contentdelete")
+	public String contentdelete(Model model, User_Board user_board) throws Exception{
+		
+		int seq = user_board.getSeq();
+		int result;
+		System.out.println("seq@@@@@@@@@@@@@@@@value:"+seq);
+		result = testservice.contentdelete(user_board);		
+		model.addAttribute("result",result);
+		
+		return "redirect:/onlyblue21/List_n";
+	}
+	
+	@RequestMapping(value="/onlyblue21/contentupdate")
+	public String contentupdate (Model model, User_Board user_board) throws Exception{
+		
+		int seq = user_board.getSeq();
+		String content = user_board.getContent();
+		System.out.println("seq@@@@@@@@@@@@@@@@value:"+seq);
+		System.out.println("content@@@@@@@@@@@@@@@@value:"+content);
+		testservice.contentupdate(user_board);
+		
+		return "redirect:/onlyblue21/List_n";
+	}
+	
+	
+	//Content
+	@RequestMapping(value="/onlyblue21/Content", method=RequestMethod.GET)
+	public String Content(Model model,User_Board user_board) throws Exception{
+		
+		HashMap content = null;
+//		int seqnumber =0;
+//		int getSeq = user_board.getSeq();
+//		String getContent = user_board.getContent();		
+//		Class classes = user_board.getClass();
+		
+//		System.out.println("@@@@@@testclass"+classes.toString());
+//		System.out.println("@@@@@@getContent"+getContent);
+//		System.out.println("@@@@@@getSeq"+getSeq);
+		
+		
+		content = testservice.content(user_board);
+//		System.out.println("seqnumber�� ����� ĳ���� �ǳ�"+seqnumber);
+//		System.out.println("content���� seq�� ���ñ�?"+content);
+		model.addAttribute("content",content);
+		
+//		System.out.println("@@@@@@@@content2@@@@@@@@@"+testService.content(user_board));
+//		content = testService.content(user_board);
+//		System.out.println(content+"&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
+//		content = testService.content2(user_board);
+//		System.out.println("content���� ���� ���"+content);
+//		model.addAttribute("Content",content);
+		
+		return "/onlyblue21/Content";
+	}
+	
+	@RequestMapping(value="/onlyblue21/Join")
+	public String Join(Model model,UserVo uservo) throws Exception{
+		int a;
+		String result;
+		if(!uservo.getId().equals(null) && !uservo.getId().equals("")){
+			
+			a = testservice.Join(uservo);
+			result = a > 0? "���� ���� �Ͽ����ϴ�." : "���� ���� �Ͽ����ϴ�.";
+			model.addAttribute("result",result);
+			System.out.println(result);
+		}
+		return "/onlyblue21/Login";
+	}
+	@RequestMapping(value="/onlyblue21/goJoin")
+	public String goJoin(Model model) throws Exception{
+		
+		return "/onlyblue21/Join";
+	}
+	@RequestMapping(value="/onlyblue21/Logout")
+	public String Logout(Model model) throws Exception{
+		
+		return "/onlyblue21/Login";
+	}
+}

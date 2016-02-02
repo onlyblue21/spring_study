@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+ 		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="onlyblue21">
+<!-- 	<select id="test" resultType="int"> -->
+<!-- 		SELECT  -->
+<!-- 				1000  -->
+<!-- 		FROM  -->
+<!-- 				DUAL -->
+<!-- 	</select> -->
+	
+	<select id="Login" parameterType="UserVo21" resultType="int">
+		SELECT 
+				COUNT(1) 
+		FROM 
+				TB_USER 
+		WHERE 
+				ID = #{id}
+				AND 
+				PW = #{pw}
+	</select>
+	
+	<select id="UserBoard" resultType="HashMap">
+<!-- 	<select id="UserBoard" resultType="ListVo21"> -->
+		SELECT 
+			    SEQ
+			   ,TITLE
+			   ,REG_ID
+			   ,REG_DT
+		FROM 
+				TB_BOARD 
+		ORDER BY  
+				SEQ ASC
+	</select>
+	
+	<select id="LoginSession" parameterType="UserVo21" resultType="String">
+		SELECT 
+			    ID 
+		FROM 
+				TB_USER
+	</select>
+	
+	<insert id="Join" parameterType="UserVo21">
+		INSERT 	INTO 
+				TB_USER 
+						(	ID
+						 	,PW		) 
+		VALUES
+					(	#{id}
+						,#{pw}		)
+	</insert>
+	
+	<!-- 시간 관련   SELECT TO_CHAR(SYSTIMESTAMP,'yyyy-mm-dd hh24:mi')now  FROM DUAL -->
+	<!-- AUTO_INCREMENT 방법   SELECT TO_NUMBERu('0' || MAX(SEQ))+1 FROM TB_BOARD -->
+	
+	
+	
+	<insert id="AddContent" parameterType="ListVo21">
+		INSERT INTO 
+			TB_BOARD (	SEQ
+						,TITLE
+						,CONTENT
+						,REG_ID
+						,REG_DT		) 
+		VALUES
+					(	BOARDSEQ.NEXTVAL
+						,#{title}
+						,#{content}
+						,#{reg_id}
+						,SYSDATE	)
+			
+	</insert>
+	
+	<select id="content" parameterType="ListVo21" resultType="HashMap">
+		SELECT
+				SEQ
+				,TO_CHAR(CONTENT)CONTENT
+		FROM 
+				TB_BOARD
+		WHERE 
+				SEQ = 
+					#{seq}
+	</select>
+	
+	<select id="maxseq" parameterType="ListVo21" resultType="int">
+		SELECT 
+			TO_NUMBER('0' || MAX(SEQ))+1 
+		FROM 
+			TB_BOARD
+	</select>
+	
+	
+	<delete id="content_delete" parameterType="ListVo21">
+		DELETE
+			FROM TB_BOARD
+		WHERE 
+			SEQ =
+				#{seq}
+	</delete>
+	
+	<update id="contentupdate" parameterType="ListVo21">
+		UPDATE
+			TB_BOARD
+		SET
+			CONTENT =			
+					#{content}
+			,REG_DT =
+					SYSDATE
+		WHERE
+			SEQ =
+				#{seq}
+	</update>
+	
+</mapper>

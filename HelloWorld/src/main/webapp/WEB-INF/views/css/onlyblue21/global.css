@@ -1,0 +1,7 @@
+@CHARSET "UTF-8";
+
+body { margin: 0px auto; padding: 20px 0px; width: 1280px; color: red;  border="1"}
+
+
+#aa { margin: 0px auto; padding: 20px 0px; width: 1280px; color: red; text:bold }
+.aa { margin: 0px auto; padding: 20px 0px; width: 1280px; color: red; text:bold }
