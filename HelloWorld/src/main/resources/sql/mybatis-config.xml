@@ -21,5 +21,4 @@
 	<mappers>
 		<mapper resource="sql/onlyblue21/onlyblue21.xml"/>
 	</mappers>
-
 </configuration>

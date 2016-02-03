@@ -12,7 +12,7 @@
 <script src="/js/onlyblue21/Ob21.js" type="text/javascript"></script>
 <script type="text/javascript">
 window.onload = function NewUserCheck() {
-	var result = "${welcome}";
+	var result = "${result}";
 	if (result) {
 		alert(result);
 	}
@@ -31,8 +31,12 @@ window.onload = function NewUserCheck() {
 				<td>pw:
 						<input id="pw" name="pw" type="password"> 
 				</td>
+				
 				<td>
+				
 				<input type="submit" value="확인" >
+				<input type="button" value="Test_user_db생성" onclick="create_db_user();">
+				<input type="button" value="Test_Board_db생성" onclick="create_db_board();">
 				<input type="button" value="Join" onclick="Joinpage();">
 				</td>
 			</tr>

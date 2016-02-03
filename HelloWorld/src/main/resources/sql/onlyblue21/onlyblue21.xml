@@ -12,17 +12,47 @@
 <!-- 				DUAL -->
 <!-- 	</select> -->
 	
+	<!-- ID와 PW확인 -->
 	<select id="Login" parameterType="UserVo21" resultType="int">
+	<![CDATA[
 		SELECT 
 				COUNT(1) 
 		FROM 
-				TB_USER 
+				TEST_USER 
 		WHERE 
 				ID = #{id}
 				AND 
 				PW = #{pw}
+				]]>
 	</select>
 	
+	<!--  USER DB 생성 -->
+	<insert  id="create_db_user" parameterType="String">
+		CREATE TABLE IF NOT EXISTS
+				TEST_USER
+					(
+						ID VARCHAR(8) NOT NULL,
+						PW VARCHAR(8) NOT NULL,
+						PRIMARY KEY(ID)
+					)
+	</insert>
+	
+	
+	<!-- BOARD DB생성 -->
+	<insert  id="create_db_board" >
+		CREATE TABLE IF NOT EXISTS
+				TEST_BOARD
+				(
+   					SEQ INT AUTO_INCREMENT,
+    				TITLE VARCHAR(20) NOT NULL,
+    				REG_ID VARCHAR(20) NOT NULL,
+    				REG_DT DATETIME,
+    				CONTENT VARCHAR(50) NOT NULL,
+    				PRIMARY KEY(SEQ)
+    			)
+	</insert>
+	
+	<!-- LIST DB SELECT -->
 	<select id="UserBoard" resultType="HashMap">
 <!-- 	<select id="UserBoard" resultType="ListVo21"> -->
 		SELECT 
@@ -31,21 +61,25 @@
 			   ,REG_ID
 			   ,REG_DT
 		FROM 
-				TB_BOARD 
+				TEST_BOARD 
 		ORDER BY  
 				SEQ ASC
 	</select>
 	
-	<select id="LoginSession" parameterType="UserVo21" resultType="String">
+	<!-- ID 확인 -->
+	<select id="Check_id" parameterType="UserVo21" resultType="int">
 		SELECT 
-			    ID 
+			    COUNT(ID) 
 		FROM 
-				TB_USER
+				TEST_USER
+		WHERE 
+				ID = #{ID}
 	</select>
 	
+	<!-- ID,PW INSERT -->
 	<insert id="Join" parameterType="UserVo21">
 		INSERT 	INTO 
-				TB_USER 
+				TEST_USER 
 						(	ID
 						 	,PW		) 
 		VALUES
@@ -53,24 +87,22 @@
 						,#{pw}		)
 	</insert>
 	
+	<!-- 아래는 오라클의 경우임! -->
 	<!-- 시간 관련   SELECT TO_CHAR(SYSTIMESTAMP,'yyyy-mm-dd hh24:mi')now  FROM DUAL -->
 	<!-- AUTO_INCREMENT 방법   SELECT TO_NUMBERu('0' || MAX(SEQ))+1 FROM TB_BOARD -->
 	
-	
-	
+	<!--  게시물 작성 -->
 	<insert id="AddContent" parameterType="ListVo21">
 		INSERT INTO 
-			TB_BOARD (	SEQ
-						,TITLE
+			TEST_BOARD (   TITLE
 						,CONTENT
 						,REG_ID
 						,REG_DT		) 
 		VALUES
-					(	BOARDSEQ.NEXTVAL
-						,#{title}
+					(	#{title}
 						,#{content}
 						,#{reg_id}
-						,SYSDATE	)
+						,NOW()	)
 			
 	</insert>
 	
@@ -79,39 +111,41 @@
 				SEQ
 				,TO_CHAR(CONTENT)CONTENT
 		FROM 
-				TB_BOARD
+				TEST_BOARD
 		WHERE 
 				SEQ = 
 					#{seq}
 	</select>
 	
 	<select id="maxseq" parameterType="ListVo21" resultType="int">
+	<![CDATA[
 		SELECT 
 			TO_NUMBER('0' || MAX(SEQ))+1 
 		FROM 
 			TB_BOARD
+			]]>
 	</select>
 	
-	
+	<!-- 게시물 삭제 -->
 	<delete id="content_delete" parameterType="ListVo21">
 		DELETE
-			FROM TB_BOARD
+			FROM TEST_BOARD
 		WHERE 
 			SEQ =
 				#{seq}
 	</delete>
 	
+	<!-- 게시물 수정 -->
 	<update id="contentupdate" parameterType="ListVo21">
 		UPDATE
-			TB_BOARD
+			TEST_BOARD
 		SET
 			CONTENT =			
 					#{content}
 			,REG_DT =
-					SYSDATE
+					NOW()
 		WHERE
 			SEQ =
 				#{seq}
 	</update>
-	
 </mapper>

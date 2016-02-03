@@ -9,8 +9,7 @@
 <link rel="stylesheet" type="text/css" href="/css/onlyblue21/global.css" />
 <script src="/js/onlyblue21/Ob21.js" type="text/javascript"></script>
 <body>
-	<form method="get" name="Joinfrm" action="/Join"
-		onsubmit="return Joinvalidate(this)">
+	<form method="get" name="Joinfrm" action="/Join" onsubmit="return Joinvalidate(this)">
 		<table border="1" align="center" width="400px">
 			<tr>
 				<td>

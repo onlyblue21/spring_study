@@ -35,7 +35,7 @@ window.onload = function CaddCheck() {
 		<table border="1" aling="left" width="200px">
 			<tr>
 				<td><input type="button" value="로그아웃" onclick="Logout();" />
-					<h1>Session_Test 공사중${idSession}</h1></td>
+					<h1>Session_Test${idSession}</h1></td>
 			</tr>
 		</table>
 

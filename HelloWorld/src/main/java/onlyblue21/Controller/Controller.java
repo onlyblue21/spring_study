@@ -1,6 +1,8 @@
 package onlyblue21.Controller;
 
+import java.sql.SQLException;
 import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -24,15 +26,52 @@ public class Controller {
 	
 //	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
-	@Resource(name="Pro_Service")
+	@Resource(name = "Pro_Service")
 	private Pro_Service Pro_Service;
+	
 	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String home(Model model){
 		System.out.println("test");
+		System.out.println("model = " + model);
+		
 		return "/Login";
 	}
 
+	@RequestMapping(value = "/create_db_user", method = RequestMethod.POST)
+	public String create_db_user(Model model,UserVo uservo,User_Board user_board){
+		System.out.println("create_db");
+		
+		try{
+		int check_db_user = Pro_Service.create_db_user();
+		System.out.println("check_db_user = " + check_db_user);
+		}
+		catch(SQLException ex){
+			System.out.println("여기서 잡힘1");
+			ex.printStackTrace();
+		}catch(Exception ex){
+			System.out.println("여기서 잡힘2");
+			ex.printStackTrace();
+		}
+		
+		return "/Login";
+	}
+	
+	@RequestMapping(value = "/create_db_board",method = RequestMethod.POST)
+	public String create_db_board(Model model, UserVo uservo,User_Board user_board){
+		System.out.println("create_db_board");
+		
+		try{
+			int check_db_board = Pro_Service.create_db_board();
+			System.out.println("check_db_board = " + check_db_board);
+			}
+			catch(Exception ex){
+				System.out.println("여기서 잡힘1");
+				ex.printStackTrace();
+			}
+		return "/Login";
+	}
+	
 	
 	@RequestMapping(value = "/List" , method=RequestMethod.POST)
 	public String login2(Model model,UserVo uservo,User_Board user_board) throws Exception{
@@ -40,13 +79,13 @@ public class Controller {
 			boolean Login = false;
 			Login = Pro_Service.Login(uservo);
 			List<User_Board> User_List = null;
+			System.out.println("Login = "  + Login);
 		if(Login){
 			User_List = Pro_Service.UserBoard(user_board);
 			System.out.println("Listvalue = "+User_List);
 			
 			model.addAttribute("List",User_List);
 			model.addAttribute("count",User_List.size());
-//			System.out.println("@@@@@@@@@@@@@@@@@@@List��"+User_List);
 			return "/List";
 		}
 		else{
@@ -67,29 +106,30 @@ public class Controller {
 			return "/List";
 	}
 	@RequestMapping(value="/addContent")
-	public String addContent(Locale locale, Model model, UserVo uservo,User_Board user_board, 
+	public String addContent(Locale locale, Model model, User_Board user_board, 
 								final RedirectAttributes redirectAttributes) throws Exception{
 		
 		String process = null;
 		process = user_board.getProcess();
+		System.out.println("title="+user_board.getTitle());
+		System.out.println("content=" + user_board.getContent());
+		System.out.println("reg_id =" + user_board.getReg_id());
+		
 		
 		if(user_board.getProcess().equals("add")){
 			return "/AddContent";
 		}
 
 		if(user_board.getProcess().equals("sqladd")){
-			String Mresult=null;
+			String Mresult = null;
 			Date date = new Date();
 			String ServerTime = null;
-			int text=0;
 			
 			DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
 			
 			ServerTime = dateFormat.format(date);
 			model.addAttribute("serverTime", ServerTime );
 			
-			text = Pro_Service.maxseq(user_board);
-			System.out.println("@@@@@@@@@@@@@@@maxseq"+text);
 			int result = Pro_Service.AddContent(user_board);
 			
 			
@@ -137,14 +177,15 @@ public class Controller {
 	
 	@RequestMapping(value="/Join")
 	public String Join(Model model,UserVo uservo) throws Exception{
-		int a;
-		String result;
-		if(!uservo.getId().equals(null) && !uservo.getId().equals("")){
 			
-			a = Pro_Service.Join(uservo);
-			result = a > 0? "Test_true=" : "Test_false=";
-			model.addAttribute("result",result);
-			System.out.println(result);
+		if(!uservo.getId().equals(null) || !uservo.getId().equals("")){
+			int check_id = Pro_Service.Check_id(uservo);
+			System.out.println("check_id= " + check_id);
+			
+			if(check_id < 1){
+				Pro_Service.Join(uservo);
+				model.addAttribute("result","회원 가입 성공");
+			}
 		}
 		return "/Login";
 	}

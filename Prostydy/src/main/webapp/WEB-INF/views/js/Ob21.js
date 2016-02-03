@@ -3,7 +3,7 @@ function Joinpage(actionfrm) {
 	var Test = confirm("회원 가입 하시겠습니까?");
 	if (Test) {
 		var actionfrm = document.actionfrm;
-		actionfrm.action = "/goJoin";
+		actionfrm.action = "/onlyblue21/goJoin";
 		actionfrm.id.value = "";
 		actionfrm.pw.value = "";
 		actionfrm.submit();
@@ -37,12 +37,12 @@ function loginvalidate() {
 function Logout() {
 
 	var Listfrm = document.Listfrm;
-	Listfrm.action = "/Logout";
+	Listfrm.action = "/onlyblue21/Logout";
 	Listfrm.submit();
 }
 function addContent() {
 	var Listfrm = document.Listfrm;
-	Listfrm.action = "/addContent";
+	Listfrm.action = "/onlyblue21/addContent";
 	Listfrm.process.value = "add";
 	Listfrm.submit();
 }
@@ -64,7 +64,7 @@ function Joinvalidate() {
 
 function cancle() {
 	var Joinfrm = document.Joinfrm;
-	Joinfrm.action = "/login";
+	Joinfrm.action = "/onlyblue21/login";
 	Joinfrm.submit();
 }
 // join end
@@ -95,33 +95,22 @@ function contentdelete(SEQ){
 	
 	var cList = document.contentList;
 	cList.seq.value = SEQ;
-	cList.action= "/contentdelete";
+	cList.action= "/onlyblue21/contentdelete";
 	cList.submit();
 }
 
 function contentupdate(SEQ,CONTENT){
 	var cList = document.contentList;
 	cList.seq.value = SEQ;
-	cList.action= "/contentupdate";
+	cList.action= "/onlyblue21/contentupdate";
 	cList.submit();
 	
 	
 	
 }
+
+
 // Content end
 
-//---------------create db user start ---------------------------
-function create_db_user(){
-	var create_db = document.actionfrm;
-	create_db.action = "/create_db_user";
-	create_db.submit();
-}
-//---------------create db user end ---------------------------
 
-//------------- create db board start---------------
-function create_db_board(){
-	var create_db = document.actionfrm;
-	create_db.action = "/create_db_board";
-	create_db.submit();
-}
-//------------- create db board end---------------
+

@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository("onlyblue21.dao.TestDao")
-public class Dao {
+public class Dao{
 
 	@Autowired
 	private SqlSession sqlSession;
@@ -60,4 +60,15 @@ public class Dao {
 		
 		sqlSession.update("onlyblue21.contentupdate",user_board);
 	}
+	public int create_db_user(){
+		return sqlSession.insert("onlyblue21.create_db_user");
+	}
+	public int create_db_board(){
+		return sqlSession.insert("onlyblue21.create_db_board");
+	}
+	public int Check_id(UserVo uservo){
+		return sqlSession.selectOne("onlyblue21.Check_id");
+	}
+	
+	
 }

@@ -28,4 +28,11 @@ public interface Pro_Service {
 	
 	public void contentupdate(User_Board user_board)throws Exception;
 	
+	public int create_db_user()throws Exception;
+	
+	public int create_db_board()throws Exception;
+	
+	public int Check_id(UserVo uservo)throws Exception;
+	
+	
 }

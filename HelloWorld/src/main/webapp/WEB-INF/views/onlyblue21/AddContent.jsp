@@ -1,16 +1,15 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <title>Insert title here</title>
 </head>
 <link rel="stylesheet" type="text/css" href="/css/onlyblue21/global.css" />
 <script src="/js/onlyblue21/Ob21.js" type="text/javascript"></script>
 <body>
-	<form name="addcontent" action="/addContent" method="post" 
-		onsubmit="return valcheck(this);">
+	<form name="addcontent" action="/addContent" method="post" onsubmit="return valcheck(this);">
 		<input type="hidden" name="process" value="sqladd">
 		
 		<table border="1" width="800px" height="200px">
@@ -33,8 +32,7 @@
 				</td>
 			</tr>
 		</table>
-		<input type="submit" value="확인"> <input type="button"
-			value="취소" onclick="javascript:history.back();" />
+		<input type="submit" value="확인"> <input type="button" value="취소" onclick="javascript:history.back();" />
 	</form>
 </body>
 </html>

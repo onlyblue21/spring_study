@@ -65,4 +65,24 @@ public class Pro_ServiceImpl implements Pro_Service{
 		
 		return dao.maxseq(user_board);
 	}
+	
+	@Override
+	public int create_db_user()throws Exception{
+		
+		return dao.create_db_user();
+	}
+	
+	@Override
+	public int create_db_board()throws Exception{
+		
+		return dao.create_db_board();
+	}
+	
+	@Override
+	public int Check_id(UserVo uservo)throws Exception{
+		
+		return dao.Check_id(uservo);
+	}
+	
+	
 }
