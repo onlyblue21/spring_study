@@ -1,5 +1,6 @@
 package onlyblue21.dao;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -40,7 +41,7 @@ public class Dao{
 		return sqlSession.insert("onlyblue21.Join",uservo);
 	}
 	
-	public HashMap content(User_Board user_Board){
+	public HashMap<String,String> content(User_Board user_Board){
 		
 		return sqlSession.selectOne("onlyblue21.content",user_Board);
 	}
@@ -50,7 +51,7 @@ public class Dao{
 	}
 	public int contentdelete(User_Board user_board){
 
-		return sqlSession.delete("onlyblue21.content_delete", user_board);
+		return sqlSession.delete("onlyblue21.c_delete", user_board);
 	}
 	public int maxseq(User_Board user_board){
 		
@@ -60,11 +61,11 @@ public class Dao{
 		
 		sqlSession.update("onlyblue21.contentupdate",user_board);
 	}
-	public int create_db_user(){
-		return sqlSession.insert("onlyblue21.create_db_user");
+	public void create_db_user(){
+		sqlSession.insert("onlyblue21.create_db_user");
 	}
-	public int create_db_board(){
-		return sqlSession.insert("onlyblue21.create_db_board");
+	public void create_db_board(){
+		sqlSession.insert("onlyblue21.create_db_board");
 	}
 	public int Check_id(UserVo uservo){
 		return sqlSession.selectOne("onlyblue21.Check_id");

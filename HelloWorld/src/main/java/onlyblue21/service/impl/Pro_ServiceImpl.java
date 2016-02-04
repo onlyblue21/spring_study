@@ -1,5 +1,6 @@
 package onlyblue21.service.impl;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -40,7 +41,7 @@ public class Pro_ServiceImpl implements Pro_Service{
 		return dao.Join(uservo);
 	}
 	@Override
-	public HashMap content(User_Board user_Board) throws Exception{
+	public HashMap<String,String> content(User_Board user_Board) throws Exception{
 		
 		return dao.content(user_Board);
 	}
@@ -67,15 +68,15 @@ public class Pro_ServiceImpl implements Pro_Service{
 	}
 	
 	@Override
-	public int create_db_user()throws Exception{
+	public void create_db_user()throws Exception{
 		
-		return dao.create_db_user();
+		dao.create_db_user();
 	}
 	
 	@Override
-	public int create_db_board()throws Exception{
+	public void create_db_board()throws Exception{
 		
-		return dao.create_db_board();
+		dao.create_db_board();
 	}
 	
 	@Override
@@ -83,6 +84,5 @@ public class Pro_ServiceImpl implements Pro_Service{
 		
 		return dao.Check_id(uservo);
 	}
-	
 	
 }

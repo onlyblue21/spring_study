@@ -8,6 +8,16 @@ public class User_Board {
 	private String reg_id;
 	private String reg_dt;
 	private String process;
+	private String test;
+	
+	
+	public String getTest() {
+		return test;
+	}
+
+	public void setTest(String test) {
+		this.test = test;
+	}
 
 	public String getContent() {
 		return content;

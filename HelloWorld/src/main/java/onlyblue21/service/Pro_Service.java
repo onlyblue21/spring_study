@@ -1,5 +1,6 @@
 package onlyblue21.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -18,7 +19,7 @@ public interface Pro_Service {
 
 	public int Join(UserVo uservo) throws Exception;
 	
-	public HashMap content(User_Board user_board) throws Exception;
+	public HashMap<String,String> content(User_Board user_board) throws Exception;
 	
 	public int AddContent(User_Board user_board) throws Exception;
 	
@@ -28,11 +29,10 @@ public interface Pro_Service {
 	
 	public void contentupdate(User_Board user_board)throws Exception;
 	
-	public int create_db_user()throws Exception;
+	public void create_db_user()throws Exception;
 	
-	public int create_db_board()throws Exception;
+	public void create_db_board()throws Exception;
 	
 	public int Check_id(UserVo uservo)throws Exception;
-	
 	
 }

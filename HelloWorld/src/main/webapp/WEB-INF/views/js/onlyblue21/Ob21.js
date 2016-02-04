@@ -28,27 +28,20 @@ function loginvalidate() {
 	return true;
 }
 
-
-// login end
-
-// List start
-
-
+//logout
 function Logout() {
-
 	var Listfrm = document.Listfrm;
 	Listfrm.action = "/Logout";
 	Listfrm.submit();
 }
+
 function addContent() {
 	var Listfrm = document.Listfrm;
 	Listfrm.action = "/addContent";
 	Listfrm.process.value = "add";
 	Listfrm.submit();
 }
-// List end
 
-// join start
 function Joinvalidate() {
 	if (!document.Joinfrm.id.value) {
 		alert("id를 입력하세요.")
@@ -116,7 +109,6 @@ function create_db_user(){
 	create_db.action = "/create_db_user";
 	create_db.submit();
 }
-//---------------create db user end ---------------------------
 
 //------------- create db board start---------------
 function create_db_board(){
@@ -124,4 +116,20 @@ function create_db_board(){
 	create_db.action = "/create_db_board";
 	create_db.submit();
 }
-//------------- create db board end---------------
+
+//------Content_update start-------------
+function Content_update(){
+	var c_update = document.Listfrm;
+	c_update.action = "/c_update";
+	c_update.submit();
+}
+
+//------Content_delete start-------------
+function Content_delete(){
+	var c_delete = document.Listfrm;
+	c_delete.action = "/c_delete";
+	c_delete.submit();
+}
+
+
+

@@ -60,6 +60,7 @@
 			   ,TITLE
 			   ,REG_ID
 			   ,REG_DT
+			   ,CONTENT
 		FROM 
 				TEST_BOARD 
 		ORDER BY  
@@ -87,6 +88,7 @@
 						,#{pw}		)
 	</insert>
 	
+	
 	<!-- 아래는 오라클의 경우임! -->
 	<!-- 시간 관련   SELECT TO_CHAR(SYSTIMESTAMP,'yyyy-mm-dd hh24:mi')now  FROM DUAL -->
 	<!-- AUTO_INCREMENT 방법   SELECT TO_NUMBERu('0' || MAX(SEQ))+1 FROM TB_BOARD -->
@@ -109,7 +111,7 @@
 	<select id="content" parameterType="ListVo21" resultType="HashMap">
 		SELECT
 				SEQ
-				,TO_CHAR(CONTENT)CONTENT
+				,CONTENT
 		FROM 
 				TEST_BOARD
 		WHERE 
@@ -122,12 +124,12 @@
 		SELECT 
 			TO_NUMBER('0' || MAX(SEQ))+1 
 		FROM 
-			TB_BOARD
+			TEST_BOARD
 			]]>
 	</select>
 	
 	<!-- 게시물 삭제 -->
-	<delete id="content_delete" parameterType="ListVo21">
+	<delete id="c_delete" parameterType="ListVo21">
 		DELETE
 			FROM TEST_BOARD
 		WHERE 

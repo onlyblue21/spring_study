@@ -1,10 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
 <link rel="stylesheet" type="text/css" href="/css/onlyblue21/global.css"/>
@@ -30,9 +30,9 @@ window.onload = function CaddCheck() {
 </script>
 
 <body>
-	<form name="Listfrm" method="Get" action="/List_n">
-		<input type="hidden" value="" name="process">
-		<table border="1" aling="left" width="200px">
+	<form name="Listfrm" method="post" action="/List_n">
+				<input type="hidden" value="" name="process">
+		<table border="1" aling=middle width="200px">
 			<tr>
 				<td><input type="button" value="로그아웃" onclick="Logout();" />
 					<h1>Session_Test${idSession}</h1></td>
@@ -54,7 +54,7 @@ window.onload = function CaddCheck() {
 			<c:forEach begin="0" end="${count}"  var="List" items="${List}">
 				<tr>
 					<td>${List.SEQ}</td>
-					<td><a href="/Content?Seq=${List.SEQ}">${List.TITLE}</a></td>
+					<td><a href="/Content?Seq=${List.SEQ}&&title=${List.TITLE}&&content=${List.CONTENT}">${List.TITLE}</a></td>
 					<td>${List.REG_ID}</td>
 					<td id="aa">${List.REG_DT}</td>
 				</tr>
@@ -62,7 +62,7 @@ window.onload = function CaddCheck() {
 			<tr></tr>
 			<tr width="*" align="right">
 				<td colspan="4">
-				<input align="right" type="submit" value="목록" />
+					<input align="right" type="submit" value="목록" />
 					<input type="button" value="글쓰기" onclick="addContent();" />
 				</td>
 			</tr>
