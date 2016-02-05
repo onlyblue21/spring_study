@@ -54,7 +54,7 @@ window.onload = function CaddCheck() {
 			<c:forEach begin="0" end="${count}"  var="List" items="${List}">
 				<tr>
 					<td>${List.SEQ}</td>
-					<td><a href="/Content?Seq=${List.SEQ}&&title=${List.TITLE}&&content=${List.CONTENT}">${List.TITLE}</a></td>
+					<td><a href="/Content?Seq=${List.SEQ}&&title=${List.TITLE}&&content=${List.CONTENT}&&reg_id=${List.REG_ID}u">${List.TITLE}</a></td>
 					<td>${List.REG_ID}</td>
 					<td id="aa">${List.REG_DT}</td>
 				</tr>

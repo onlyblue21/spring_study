@@ -1,8 +1,5 @@
 package onlyblue21.Controller;
 
-import java.text.DateFormat;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
@@ -12,12 +9,14 @@ import onlyblue21.service.Pro_Service;
 import onlyblue21.vo.UserVo;
 import onlyblue21.vo.User_Board;
 
-import org.apache.log4j.Logger;
+import org.apache.taglibs.standard.tag.common.core.RedirectSupport;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.mvc.support.RedirectAttributesModelMap;
+import org.springframework.web.servlet.view.RedirectView;
 
 @org.springframework.stereotype.Controller
 @SessionAttributes("command")
@@ -58,11 +57,8 @@ public class Controller {
 			
 			boolean Login = false;
 			Login = Pro_Service.Login(uservo);
-			System.out.println("Login = "  + Login);
 		if(Login){
 			List<User_Board> User_List = Pro_Service.UserBoard(user_board);
-			System.out.println("Listvalue = "+User_List);
-			
 			model.addAttribute("List",User_List);
 			model.addAttribute("count",User_List.size());
 			return "/List";
@@ -81,7 +77,7 @@ public class Controller {
 			User_List = Pro_Service.UserBoard(user_board);
 			model.addAttribute("List",User_List);
 			model.addAttribute("count",User_List.size());
-
+			
 			return "/List";
 	}
 	@RequestMapping(value="/addContent")
@@ -96,15 +92,12 @@ public class Controller {
 //			String Mresult = null;
 //			Date date = new Date();
 //			String ServerTime = null;
-			
 //			DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-			
 //			ServerTime = dateFormat.format(date);
 //			model.addAttribute("serverTime", ServerTime );
 			
 			Pro_Service.AddContent(user_board);
 			
-			System.out.println("add 성공");
 //			Mresult = result > 0? "Test_true=" : "Test_false=";
 			//post방식으로 parameter붙혀줄수있다.
 //			redirectAttributes.addFlashAttribute("Mresult", Mresult);
@@ -120,8 +113,8 @@ public class Controller {
 		
 		int seq = user_board.getSeq();
 		int result;
-		result = Pro_Service.contentdelete(user_board);		
-		model.addAttribute("result",result);
+		Pro_Service.contentdelete(user_board);		
+//		model.addAttribute("result",result);
 		
 		return "redirect:/List_n";
 	}
@@ -135,8 +128,6 @@ public class Controller {
 		
 		return "redirect:/List_n";
 	}
-	
-	
 	
 	
 	@RequestMapping(value="/Join")

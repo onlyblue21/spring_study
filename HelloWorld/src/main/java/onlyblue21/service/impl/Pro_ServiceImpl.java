@@ -51,9 +51,9 @@ public class Pro_ServiceImpl implements Pro_Service{
 		return dao.addcontent(user_board);
 	}
 	@Override
-	public int contentdelete(User_Board user_board)throws Exception{
+	public void contentdelete(User_Board user_board)throws Exception{
 
-		return dao.contentdelete(user_board);
+		dao.contentdelete(user_board);
 	}
 	@Override
 	public void contentupdate(User_Board user_board)throws Exception{

@@ -10,12 +10,22 @@
 <link rel="stylesheet" type="text/css" href="/css/onlyblue21/global.css"/>
 <script type="text/javascript" src="/js/jquert-1.11.2.js"></script>
 <script src="/js/onlyblue21/Ob21.js" type="text/javascript">
+windows.onload = function Message(){
+	var result = "${result}";
+	if(result){
+		alert(result);
+	}
+	return false;
+}
+
+
 
 </script>
 
 <body>
 	<form name="Listfrm" method="post" action="/List_n">
-		<input type="hidden" value="" name="process">
+		<input type="hidden" value="${SEQ}" name="Seq">
+		<input type="hidden" value="" name="control"/>
 		<table border="1" aling=middle width="200px">
 			<tr>
 				<td><input type="button" value="로그아웃" onclick="Logout();" />
@@ -37,7 +47,7 @@
 				<tr>
 					<td>${SEQ}</td>
 					<td>${TITLE}</td>
-					<td>${CONTENT}</td>
+					<td><input type="text" value="${CONTENT}" name="content"   /></td>
 				</tr>
 			<tr></tr>
 			<tr width="300px">

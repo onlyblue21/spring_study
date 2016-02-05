@@ -23,7 +23,7 @@ public interface Pro_Service {
 	
 	public int AddContent(User_Board user_board) throws Exception;
 	
-	public int contentdelete(User_Board user_board) throws Exception;
+	public void contentdelete(User_Board user_board) throws Exception;
 
 	public int maxseq(User_Board user_board) throws Exception;
 	

@@ -49,9 +49,9 @@ public class Dao{
 		
 		return sqlSession.insert("onlyblue21.AddContent", user_board);
 	}
-	public int contentdelete(User_Board user_board){
+	public void contentdelete(User_Board user_board){
 
-		return sqlSession.delete("onlyblue21.c_delete", user_board);
+		sqlSession.delete("onlyblue21.c_delete", user_board);
 	}
 	public int maxseq(User_Board user_board){
 		

@@ -9,8 +9,17 @@ public class User_Board {
 	private String reg_dt;
 	private String process;
 	private String test;
+	private String control;
 	
 	
+	public String getControl() {
+		return control;
+	}
+
+	public void setControl(String control) {
+		this.control = control;
+	}
+
 	public String getTest() {
 		return test;
 	}

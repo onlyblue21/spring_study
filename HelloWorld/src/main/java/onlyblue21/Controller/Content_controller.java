@@ -1,9 +1,6 @@
 package onlyblue21.Controller;
 
-import java.security.KeyStore.Entry;
-
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 
 import onlyblue21.service.Pro_Service;
 import onlyblue21.vo.User_Board;
@@ -20,19 +17,19 @@ public class Content_controller {
 	private Pro_Service Pro_Service;
 
 	@RequestMapping(value = "/c_update", method = RequestMethod.POST)
-	public String c_update(Model model) {
-		System.out.println("컨텐츠 업데이트 ");
+	public String c_update(Model model,User_Board user_board) throws Exception {
+		
+		Pro_Service.contentupdate(user_board);
+		model.addAttribute("result","업데이트 성공");
 
-		return "/Login";
+		return "redirect:/List_n";
 	}
 	@RequestMapping(value = "/c_delete", method = RequestMethod.POST)
 	public String c_delete(Model model,User_Board user_board) throws Exception {
-		
-		int aa = Pro_Service.contentdelete(user_board);
-		System.out.println("삭제결과 = " + aa);
-		System.out.println("컨텐츠 삭제 ");
-
-		return "/Login";
+		System.out.println("seq_value_delete = " + user_board.getSeq());
+		Pro_Service.contentdelete(user_board);
+		model.addAttribute("result","삭제 성공");
+		return "redirect:/List_n";
 	}
 
 	@RequestMapping(value = "/Content", method = RequestMethod.GET)
