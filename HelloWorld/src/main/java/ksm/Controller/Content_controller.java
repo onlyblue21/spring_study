@@ -1,9 +1,9 @@
-package onlyblue21.Controller;
+package ksm.Controller;
 
 import javax.annotation.Resource;
 
-import onlyblue21.service.Pro_Service;
-import onlyblue21.vo.User_Board;
+import ksm.service.Pro_Service;
+import ksm.vo.User_Board;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

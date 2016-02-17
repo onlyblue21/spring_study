@@ -7,25 +7,31 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
-<link rel="stylesheet" type="text/css" href="/css/onlyblue21/global.css"/>
+<link rel="stylesheet" type="text/css" href="/css/ksm/global.css"/>
 <script type="text/javascript" src="/js/jquert-1.11.2.js"></script>
-<script src="/js/onlyblue21/Ob21.js" type="text/javascript">
-windows.onload = function Message(){
-	var result = "${result}";
-	if(result){
-		alert(result);
-	}
+<script src="/js/ksm/Ob21.js" type="text/javascript">
+// function reset(){
+// 	document.Listfrm.reset();
+// }
+
+window.onload = function CaddCheck() {
+	var addsql = "${welcome}";
+	if (addsql) {
+		alert(addsql);
 	return false;
+	}
+// 	var input  = $(document.creatElement("input"));
+// 	input.attr('type','hidden').attr('name','inputtest').val('asd');
+// 	$('form[name="listfrm"]').append( input );
+	
+// 	<input type="hidden" name="inputtest" value="asd"/>
 }
-
-
 
 </script>
 
 <body>
 	<form name="Listfrm" method="post" action="/List_n">
-		<input type="hidden" value="${SEQ}" name="Seq">
-		<input type="hidden" value="" name="control"/>
+				<input type="hidden" value="" name="process">
 		<table border="1" aling=middle width="200px">
 			<tr>
 				<td><input type="button" value="로그아웃" onclick="Logout();" />
@@ -38,25 +44,26 @@ windows.onload = function Message(){
 				<tr>
 					<th width="100px">글번호</th>
 					<th width="400px">제목</th>
-					<th width="200px">내용</th>
+					<th width="120px">글쓴이</th>
+					<th width="180px">등록일</th>
 				</tr>
 				</thead>
 <%-- 				${count} --%>
 <%-- 				[${seq.index}]: ${List[seq.index]} --%>
 <!-- 				<c:if test="seq.index % 4 == 0"> </tr><tr> </c:if>  -->
+			<c:forEach begin="0" end="${count}"  var="List" items="${List}">
 				<tr>
-					<td>${SEQ}</td>
-					<td>${TITLE}</td>
-					<td><input type="text" value="${CONTENT}" name="content"   /></td>
+					<td>${List.SEQ}</td>
+					<td><a href="/Content?Seq=${List.SEQ}&&title=${List.TITLE}&&content=${List.CONTENT}&&reg_id=${List.REG_ID}u">${List.TITLE}</a></td>
+					<td>${List.REG_ID}</td>
+					<td id="aa">${List.REG_DT}</td>
 				</tr>
+			</c:forEach>
 			<tr></tr>
-			<tr width="300px">
-			<td></td>
-			<td></td>
-				<td align="left">
-					<input type="button" value="취소" onclick="javascript:history.back();"/>
-					<input type="button" value="수정" onclick="Content_update();"/>
-					<input type="button" value="삭제" onclick="Content_delete();"/>
+			<tr width="*" align="right">
+				<td colspan="4">
+					<input align="right" type="submit" value="목록" />
+					<input type="button" value="글쓰기" onclick="addContent();" />
 				</td>
 			</tr>
 		</table>

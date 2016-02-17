@@ -1,4 +1,4 @@
-package onlyblue21.vo;
+package ksm.vo;
 
 public class User_Board {
 

@@ -12,13 +12,13 @@
 
 	<!-- FQCN(Full Qualified Class Name) Alias(별칭관리) -->
 	<typeAliases>
-		<typeAlias type="onlyblue21.vo.UserVo"		 	alias="UserVo21"/>
-		<typeAlias type="onlyblue21.vo.User_Board" 		alias="ListVo21"/>
+		<typeAlias type="ksm.vo.UserVo"		 	alias="UserVo21"/>
+		<typeAlias type="ksm.vo.User_Board" 		alias="ListVo21"/>
 	</typeAliases>
 
 	
 	<!-- SQL Definition :: file include -->
 	<mappers>
-		<mapper resource="sql/onlyblue21/onlyblue21.xml"/>
+		<mapper resource="sql/ksm/ksm.xml"/>
 	</mappers>
 </configuration>

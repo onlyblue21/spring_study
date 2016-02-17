@@ -8,8 +8,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
-<link rel="stylesheet" type="text/css" href="/css/onlyblue21/global.css" />
-<script src="/js/onlyblue21/Ob21.js" type="text/javascript">
+<link rel="stylesheet" type="text/css" href="/css/ksm/global.css" />
+<script src="/js/ksm/Ob21.js" type="text/javascript">
 
 </script>
 

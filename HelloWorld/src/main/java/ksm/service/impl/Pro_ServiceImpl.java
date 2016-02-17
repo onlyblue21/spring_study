@@ -1,4 +1,4 @@
-package onlyblue21.service.impl;
+package ksm.service.impl;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -6,10 +6,10 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
-import onlyblue21.dao.Dao;
-import onlyblue21.service.Pro_Service;
-import onlyblue21.vo.UserVo;
-import onlyblue21.vo.User_Board;
+import ksm.dao.Dao;
+import ksm.service.Pro_Service;
+import ksm.vo.UserVo;
+import ksm.vo.User_Board;
 
 import org.springframework.stereotype.Service;
 

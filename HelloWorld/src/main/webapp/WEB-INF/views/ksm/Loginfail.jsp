@@ -9,7 +9,7 @@
 <script type="text/javascript">
 window.onload = function LoginFail(){
 	alert("ID 및 PW를 다시 입력하시기 바랍니다.");
-	location.href="/onlyblue21/Login"; 
+	location.href="/ksm/Login"; 
 	document.submit();
 }
 </script>

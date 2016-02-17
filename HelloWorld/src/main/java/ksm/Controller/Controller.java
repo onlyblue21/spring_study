@@ -1,13 +1,13 @@
-package onlyblue21.Controller;
+package ksm.Controller;
 
 import java.util.List;
 import java.util.Locale;
 
 import javax.annotation.Resource;
 
-import onlyblue21.service.Pro_Service;
-import onlyblue21.vo.UserVo;
-import onlyblue21.vo.User_Board;
+import ksm.service.Pro_Service;
+import ksm.vo.UserVo;
+import ksm.vo.User_Board;
 
 import org.apache.taglibs.standard.tag.common.core.RedirectSupport;
 import org.springframework.ui.Model;

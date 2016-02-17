@@ -1,11 +1,11 @@
-package onlyblue21.service;
+package ksm.service;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import onlyblue21.vo.UserVo;
-import onlyblue21.vo.User_Board;
+import ksm.vo.UserVo;
+import ksm.vo.User_Board;
 
 public interface Pro_Service {
 	

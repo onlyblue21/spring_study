@@ -6,8 +6,8 @@
 	pageEncoding="UTF-8"%>
 <title>Insert title here</title>
 </head>
-<link rel="stylesheet" type="text/css" href="/css/onlyblue21/global.css" />
-<script src="/js/onlyblue21/Ob21.js" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="/css/ksm/global.css" />
+<script src="/js/ksm/Ob21.js" type="text/javascript"></script>
 <body>
 	<form name="addcontent" action="/addContent" method="POST" onsubmit="return valcheck(this);">
 		<input type="hidden" name="process" value="sqladd">
